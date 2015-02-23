@@ -1,4 +1,4 @@
-package com.hnjoshi.cs157b;
+package edu.cs157b.hibernate;
 
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

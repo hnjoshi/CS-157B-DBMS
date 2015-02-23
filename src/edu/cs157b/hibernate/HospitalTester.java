@@ -5,8 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.hnjoshi.cs157b.HibernateUtil;
-
 public class HospitalTester {
 	
 	private static SessionFactory sessionFactory; 
@@ -14,11 +12,12 @@ public class HospitalTester {
     private static Session session; 
 
 	public static void main(String[] args) {
-		
+				
+		// issue with sessionFactory
 		sessionFactory = HibernateUtil.getSessionFactory();
 		
 		Patient patient = new Patient();	// transient object
-		patient.setName("Madar"); 			// only mutates the java object in Heap
+		patient.setName("Hello"); 			// only mutates the java object in Heap
 		patient.setPatientId(1);
 		
 		try{
@@ -27,20 +26,8 @@ public class HospitalTester {
 		       transaction = session.beginTransaction();
 		       
 		       session.save(patient); // patient is now persistent object
-		       
-		       patient.setPatientId(2);   // updates on the object will be persisted
-		       patient.setPatientId(3);
-		       // session.update(patient); // no need
-		      
 		       System.out.println("1:" + patient);
-		       System.out.println("2:" + session.get(Patient.class, new Integer(1)));
-		       
-		      
-		       session.evict(patient); // detached during the transaction
-		       //session.save(patient); // it will create another tuple in db
-		       session.update(patient); //way to go
-		       patient.setPatientId(4);;  
-		       
+		       System.out.println("2:" + session.get(Patient.class, new Integer(1)));		       
 		       
 		       transaction.commit(); // if you comment this out, no tuple is created in db. 
 		      }

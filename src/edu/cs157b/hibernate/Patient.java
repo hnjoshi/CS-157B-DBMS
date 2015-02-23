@@ -4,14 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Patient")
-@NamedQuery(name = "Patient.findByName", query = "from Patient where name = :name")
 public class Patient {
 	//name, DOB (MM/DD/YYYY), scheduled appointments, and prescriptions
 	private int patientId;
 	private String name;
 	private String DOB; // (MM/DD/YYYY)
-	
-	private Appointments appointment;
 
 	@Id
 	@GeneratedValue
@@ -38,14 +35,6 @@ public class Patient {
 
 	public void setDOB(String dOB) {
 		DOB = dOB;
-	}
-
-	public Appointments getAppointment() {
-		return appointment;
-	}
-
-	public void setAppointment(Appointments appointment) {
-		this.appointment = appointment;
 	}
 	
 	public String toString(){
