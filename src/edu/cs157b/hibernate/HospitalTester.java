@@ -23,7 +23,6 @@ public class HospitalTester {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
 		Date date = new Date();
-		System.out.println(sdf.format(date));
 		
 		p.setName("First");
 		p.setDOB(sdf.format(date));
