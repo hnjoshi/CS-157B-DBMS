@@ -42,3 +42,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /bin
+
+src/hibernate.cfg.xml
+*.java
+src/edu/cs157b/hibernate/HospitalTester.java
