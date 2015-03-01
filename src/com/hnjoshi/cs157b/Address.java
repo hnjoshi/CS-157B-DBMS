@@ -1,6 +1,5 @@
 package com.hnjoshi.cs157b;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable

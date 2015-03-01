@@ -1,57 +1,38 @@
 package edu.cs157b.hibernate;
 
-import org.hibernate.HibernateException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
-import com.hnjoshi.cs157b.HibernateUtil;
+import org.hibernate.cfg.Configuration;
 
 public class HospitalTester {
-	
-	private static SessionFactory sessionFactory; 
-    private static Transaction transaction;
-    private static Session session; 
 
 	public static void main(String[] args) {
 		
-		sessionFactory = HibernateUtil.getSessionFactory();
+		Configuration cfg = new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		@SuppressWarnings("deprecation")
+		SessionFactory sf = cfg.buildSessionFactory();
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
 		
-		Patient patient = new Patient();	// transient object
-		patient.setName("Madar"); 			// only mutates the java object in Heap
-		patient.setPatientId(1);
+		Patient p = new Patient();
 		
-		try{
-		       
-		       session = sessionFactory.openSession();
-		       transaction = session.beginTransaction();
-		       
-		       session.save(patient); // patient is now persistent object
-		       
-		       patient.setPatientId(2);   // updates on the object will be persisted
-		       patient.setPatientId(3);
-		       // session.update(patient); // no need
-		      
-		       System.out.println("1:" + patient);
-		       System.out.println("2:" + session.get(Patient.class, new Integer(1)));
-		       
-		      
-		       session.evict(patient); // detached during the transaction
-		       //session.save(patient); // it will create another tuple in db
-		       session.update(patient); //way to go
-		       patient.setPatientId(4);;  
-		       
-		       
-		       transaction.commit(); // if you comment this out, no tuple is created in db. 
-		      }
-		       catch (HibernateException he)
-		       {
-		           transaction.rollback();
-		           System.out.println("Transaction is rolled back.");
-		       }
-		      finally
-		      { session.close(); }
-
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+		Date date = new Date();
+		System.out.println(sdf.format(date));
+		
+		p.setName("First");
+		p.setDOB(sdf.format(date));
+		
+		s.save(p);
+		s.flush();  //Generating SQL queries
+		t.commit();
+		s.close();
+		
 	}
 
 }
