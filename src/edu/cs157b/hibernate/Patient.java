@@ -2,18 +2,18 @@ package edu.cs157b.hibernate;
 
 public class Patient extends Person {
 	
-	private int patientId;
+	private int id;
 	private String DOB; // (MM/DD/YYYY)
 	
 	public int getPatientId() {
-		return patientId;
+		return id;
 	}
 	public void setPatientId(int patientId) {
-		this.patientId = patientId;
+		id = patientId;
 	}
 	
 	public String getName() {
-		return name;
+		return super.name;
 	}
 	public void setName(String name) {
 		super.name = name;

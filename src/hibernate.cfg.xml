@@ -21,7 +21,8 @@
 		<!-- Extra properties for our hibernate configuration -->
 		
 		<!-- Creates the database schema, destroying previous data -->
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<!-- hbm2ddl: hibernate model to data definition language -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<!-- Disables auto commit feature -->
 		<property name="hibernate.connection.autocommit">false</property>
@@ -38,6 +39,8 @@
 		
 		<!-- Model mapping -->
 		<mapping resource="Patient.hbm.xml"/>
+		<mapping resource="Doctor.hbm.xml"/>
+		
 		
 	</session-factory>
 </hibernate-configuration>

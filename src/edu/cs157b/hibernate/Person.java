@@ -1,6 +1,7 @@
 package edu.cs157b.hibernate;
 
 public class Person {
+	
 	protected String name;
 
 	public String getName() {
@@ -10,5 +11,4 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }
