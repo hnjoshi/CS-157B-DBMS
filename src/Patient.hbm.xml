@@ -10,6 +10,9 @@
 		</id>
 		<property name="name" column="patient_name" type="string"></property>
 		<property name="DOB" column="DOB" type="string"></property>
+		<list name="appt" table ="Appointment">
+			<key column=""></key>
+		</list>
 		
 	</class>
 </hibernate-mapping>

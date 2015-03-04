@@ -32,7 +32,7 @@ public class HospitalTester {
 		
 		s.save(p);
 		s.save(d);
-		s.flush();  //Generating SQL queries
+		s.flush();  //forces Hibernate to sync with database
 		t.commit();
 		
 		// get inserted record
@@ -56,8 +56,6 @@ public class HospitalTester {
 		s.flush();
 		t.commit();
 		
-		s.close();
-		
+		s.close();	
 	}
-
 }

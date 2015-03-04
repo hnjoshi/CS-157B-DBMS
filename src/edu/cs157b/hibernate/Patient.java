@@ -1,9 +1,12 @@
 package edu.cs157b.hibernate;
 
+import java.util.List;
+
 public class Patient extends Person {
 	
 	private int id;
 	private String DOB; // (MM/DD/YYYY)
+	private List appt;
 	
 	public int getPatientId() {
 		return id;
