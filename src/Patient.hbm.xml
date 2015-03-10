@@ -4,15 +4,28 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 	
 <hibernate-mapping>
+
+
+
 	<class name="edu.cs157b.hibernate.Patient" table="Patient">
 		<id name="patientId" column="patientId" type="integer">
-		<generator class="increment"></generator>
+			<generator class="increment"></generator>
 		</id>
 		<property name="name" column="patient_name" type="string"></property>
 		<property name="DOB" column="DOB" type="string"></property>
 		<list name="appt" table ="Appointment">
-			<key column=""></key>
+			<key column="assigned_doc"></key>
+			<list-index base="0" column="IDX"></list-index>
+			<one-to-many class="edu.cs157b.hibernate.Appointment"/>
 		</list>
-		
 	</class>
+
+	<class name="edu.cs157b.hibernate.Appointment" table="Appointment">
+		<id name="appt_id" column="appt_id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+		<property name="appt_date" column="appt_date" type="string"></property>
+		<property name="assigned_doc" column="assigned_doc" type="string"></property>
+	</class>	
+	
 </hibernate-mapping>

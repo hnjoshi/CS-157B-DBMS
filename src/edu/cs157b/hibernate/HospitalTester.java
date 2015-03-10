@@ -1,7 +1,9 @@
 package edu.cs157b.hibernate;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +19,7 @@ public class HospitalTester {
 		@SuppressWarnings("deprecation")
 		SessionFactory sf = cfg.buildSessionFactory();
 		Session s = sf.openSession();
-		Transaction t = s.beginTransaction();
+		Transaction t = s.beginTransaction();	
 		
 		Patient p = new Patient();
 		Doctor d = new Doctor();
@@ -42,17 +44,29 @@ public class HospitalTester {
 		System.out.println(p.getName());
 		System.out.println(p.getDOB());
 		
-		// get the row and update it
+		/*// get the row and update it
 		t = s.beginTransaction();
 		p.setName("newPat1");
 		s.update(p);
 		s.flush();
-		t.commit();
+		t.commit();*/
 		
-		// delete the record
+		/*// delete the record
 		p = (Patient)s.get(Patient.class, new Integer(1));
 		t = s.beginTransaction();
 		s.delete(p);
+		s.flush();
+		t.commit();*/
+		
+		t = s.beginTransaction();
+		Appointment apt = new Appointment();
+		apt.setAppt_date(sdf.format(date));
+		
+		List<Appointment> a = new ArrayList<Appointment>();
+		a.add(apt);
+		p.setAppt(a);
+		s.save(a);
+		s.save(apt);
 		s.flush();
 		t.commit();
 		

@@ -28,4 +28,12 @@ public class Patient extends Person {
 	public void setDOB(String string) {
 		DOB = string;
 	}
+	public List getAppt() {
+		return appt;
+	}
+	public void setAppt(List appt) {
+		this.appt = appt;
+	}
+	
+	
 }
